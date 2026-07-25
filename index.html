@@ -16,7 +16,6 @@
     overflow-x: hidden;
   }
 
-  /* Scanlines */
   body::before {
     content: '';
     position: fixed;
@@ -36,7 +35,6 @@
     position: relative;
   }
 
-  /* ── HEADER ── */
   .term-header {
     border: 1px solid #00C8AA33;
     border-bottom: none;
@@ -101,11 +99,7 @@
   .meta-item { display: flex; flex-direction: column; gap: 2px; }
   .meta-label { color: #00C8AA44; }
   .meta-val { color: #00C8AACC; }
-  .meta-val.red { color: #FF4444CC; }
-  .meta-val.yellow { color: #FFAA00CC; }
-  .meta-val.purple { color: #CC66FFCC; }
 
-  /* ── BODY ── */
   .term-body {
     border: 1px solid #00C8AA33;
     border-top: none;
@@ -114,7 +108,6 @@
     padding: 0;
   }
 
-  /* ── BREACH ALERT ── */
   .alert-bar {
     background: #1A0505;
     border-bottom: 1px solid #FF444422;
@@ -127,9 +120,7 @@
 
   .alert-icon { color: #FF4444; font-size: 13px; animation: blink 0.8s step-end infinite; }
   .alert-text { font-size: 10px; color: #FF4444AA; letter-spacing: .1em; }
-  .alert-text strong { color: #FF4444; }
 
-  /* ── SESSION DIVIDER ── */
   .session-bar {
     border-top: 1px solid #00C8AA11;
     border-bottom: 1px solid #00C8AA11;
@@ -142,7 +133,6 @@
     letter-spacing: .1em;
   }
 
-  /* ── MESSAGES ── */
   .msg-area {
     padding: 16px;
     display: flex;
@@ -188,7 +178,6 @@
     position: relative;
   }
 
-  /* Dunai — left — teal */
   .bubble-d {
     background: #051A18;
     border: 1px solid #00C8AA22;
@@ -196,7 +185,6 @@
     color: #A8EEE4;
   }
 
-  /* Ventura — right — purple */
   .bubble-v {
     background: #0F0520;
     border: 1px solid #CC66FF22;
@@ -206,7 +194,6 @@
 
   .msg-row.right .msg-sender { text-align: right; color: #CC66FF55; }
 
-  /* UMI automated alert */
   .umi-alert {
     margin: 10px 0;
     background: #0A0A20;
@@ -232,14 +219,19 @@
     flex-shrink: 0;
   }
 
-  /* highlight spans */
-  .hl-red { color: #FF6666; }
-  .hl-yellow { color: #FFAA44; }
-  .hl-purple { color: #CC88FF; }
-  .hl-green { color: #44FFAA; }
-  .hl-dim { color: #00C8AA55; }
+  .enc-band {
+    background: #0A0F20;
+    border-top: 1px solid #4466FF11;
+    border-bottom: 1px solid #4466FF11;
+    padding: 4px 16px;
+    font-size: 9px;
+    color: #4466FF33;
+    letter-spacing: .15em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 
-  /* ── FOOTER ── */
   .term-footer {
     border: 1px solid #00C8AA33;
     border-top: none;
@@ -253,7 +245,6 @@
   .footer-left { font-size: 10px; color: #00C8AA44; letter-spacing: .08em; }
   .footer-right { font-size: 10px; color: #00C8AA33; letter-spacing: .1em; }
 
-  /* ── END TRANSMISSION ── */
   .end-block {
     border: 1px solid #00C8AA22;
     border-top: 3px solid #00C8AA44;
@@ -289,21 +280,15 @@
     margin-top: 8px;
   }
 
-  /* ── ENCRYPTION WATERMARK ── */
-  .enc-band {
-    background: #0A0F20;
-    border-top: 1px solid #4466FF11;
-    border-bottom: 1px solid #4466FF11;
-    padding: 4px 16px;
-    font-size: 9px;
-    color: #4466FF33;
-    letter-spacing: .15em;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+  .cursor {
+    display: inline-block;
+    width: 8px; height: 13px;
+    background: #00C8AA;
+    vertical-align: middle;
+    animation: cursor-blink 1s step-end infinite;
+    margin-left: 2px;
   }
 
-  /* animations */
   @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
@@ -318,29 +303,11 @@
     0%, 100% { opacity: 1; }
     50% { opacity: 0; }
   }
-
-  .cursor {
-    display: inline-block;
-    width: 8px; height: 13px;
-    background: #00C8AA;
-    vertical-align: middle;
-    animation: cursor-blink 1s step-end infinite;
-    margin-left: 2px;
-  }
-
-  .redacted {
-    background: #00C8AA22;
-    color: transparent;
-    border-radius: 2px;
-    user-select: none;
-    letter-spacing: .05em;
-  }
 </style>
 </head>
 <body>
 <div class="terminal">
 
-  <!-- HEADER -->
   <div class="term-header">
     <div class="header-top">
       <div>
@@ -363,11 +330,11 @@
       </div>
       <div class="meta-item">
         <div class="meta-label">ENCRYPTION</div>
-        <div class="meta-val purple">BIFROST-AES-Ω</div>
+        <div class="meta-val">BIFROST-AES-Ω</div>
       </div>
       <div class="meta-item">
         <div class="meta-label">CHANNEL STATUS</div>
-        <div class="meta-val yellow">COMPROMISED PRIOR</div>
+        <div class="meta-val">COMPROMISED PRIOR</div>
       </div>
       <div class="meta-item">
         <div class="meta-label">ORIGIN NODE</div>
@@ -383,32 +350,28 @@
       </div>
       <div class="meta-item">
         <div class="meta-label">UMI MONITORING</div>
-        <div class="meta-val purple">ACTIVE</div>
+        <div class="meta-val">ACTIVE</div>
       </div>
     </div>
   </div>
 
-  <!-- BREACH ALERT -->
   <div class="alert-bar">
     <span class="alert-icon">█</span>
-    <span class="alert-text"><strong>SECURITY NOTICE:</strong> PRIOR CHANNEL BREACH DETECTED — ACCESS POINT: <strong>RELAY NODE DELTA-9 [DESTROYED]</strong> — BREACH VECTOR LOGGED — UMI AUTONOMOUSLY FLAGGED AND ISOLATED — SEE SESSION NOTES</span>
+    <span class="alert-text">SECURITY NOTICE: PRIOR CHANNEL BREACH DETECTED — ACCESS POINT: RELAY NODE DELTA-9 [DESTROYED] — BREACH VECTOR LOGGED — UMI AUTONOMOUSLY FLAGGED AND ISOLATED — SEE SESSION NOTES</span>
   </div>
 
-  <!-- ENC WATERMARK -->
   <div class="enc-band">
     4F584E522D4558454320C2B7203330332E30382E3134203A3A205852454C59 BIFROST-XW C2B7 DUNAI/VENTURA C2B7 THARSIS-EXEC RELAY C2B7 HASH:A9F3..CC14 C2B7 UMI-WATCH:ENABLED C2B7 4F584E522D4558454320
   </div>
 
-  <!-- BODY -->
   <div class="term-body">
 
-    <!-- UMI ALERT -->
     <div style="padding:12px 16px 0">
       <div class="umi-alert">
         <span class="umi-tag">UMI — AUTO</span>
         <div>
           <div style="margin-bottom:3px;font-size:10px;letter-spacing:.1em;color:#6688FF">SECURITY EVENT LOG — 303.08.14 // 02:17:44 GST</div>
-          Unauthorized access detected on legacy relay node DELTA-9 (prior test site, status: <span class="hl-red">DESTROYED</span>). Residual data pathway reconstructed via fragmented hardlink. Breach vector isolated and burned. Accessing party identity: <span class="hl-yellow">CLASSIFIED — LOGGED TO SESSION XW-7731-Ω</span>. Recommend executive notification. Channel integrity: <span class="hl-yellow">DEGRADED / RESTORED</span>. No classified payload exfiltrated. Monitoring continues.
+          Unauthorized access detected on legacy relay node DELTA-9 (prior test site, status: DESTROYED). Residual data pathway reconstructed via fragmented hardlink. Breach vector isolated and burned. Accessing party identity: CLASSIFIED — LOGGED TO SESSION XW-7731-Ω. Recommend executive notification. Channel integrity: DEGRADED / RESTORED. No classified payload exfiltrated. Monitoring continues.
         </div>
       </div>
     </div>
@@ -418,10 +381,8 @@
       <span>PARTICIPANTS: DUNAI [BOARD-EXEC] · VENTURA [DIR. ADV. SYSTEMS]</span>
     </div>
 
-    <!-- MESSAGES -->
     <div class="msg-area">
 
-      <!-- D: We were breached? -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
@@ -434,25 +395,22 @@
         </div>
       </div>
 
-      <!-- V: I didn't know either -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
           <div class="msg-time">09:03:41</div>
-          <div class="bubble bubble-v">I didn't know either. <span class="hl-purple">UMI</span> figured it out and alerted us.</div>
+          <div class="bubble bubble-v">I didn't know either. UMI figured it out and alerted us.</div>
         </div>
       </div>
 
-      <!-- D: Is this channel secure -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
           <div class="msg-time">09:03:55</div>
-          <div class="bubble bubble-d"><span class="hl-red">Is this channel secure??</span> How the hell did someone manage to breach our personal messages?</div>
+          <div class="bubble bubble-d">Is this channel secure?? How the hell did someone manage to breach our personal messages?</div>
         </div>
       </div>
 
-      <!-- V: Again, not sure -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
@@ -465,29 +423,26 @@
         </div>
       </div>
 
-      <!-- D: We can't be dealing -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
           <div class="msg-time">09:04:47</div>
-          <div class="bubble bubble-d">We can't be dealing with <span class="hl-yellow">should haves</span> here. Did your AI figure out who breached us?</div>
+          <div class="bubble bubble-d">We can't be dealing with should haves here. Did your AI figure out who breached us?</div>
         </div>
       </div>
 
-      <!-- V: It did -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
           <div class="msg-time">09:05:14</div>
-          <div class="bubble bubble-v">It did. It doesn't mean much, but I wouldn't be worried. Even if they leak us working with <span class="hl-purple">Cornelius</span> or about <span class="hl-purple">UMI</span>, it's not like people will be surprised that Bifrost has a new weapon in the works.</div>
+          <div class="bubble bubble-v">It did. It doesn't mean much, but I wouldn't be worried. Even if they leak us working with Cornelius or about UMI, it's not like people will be surprised that Bifrost has a new weapon in the works.</div>
         </div>
         <div class="msg-row right" style="margin-top:4px">
           <div class="msg-time">09:05:31</div>
-          <div class="bubble bubble-v">Either way, let them. If it's some 12-year-old we'll send in <span class="hl-yellow">Wraiths</span> to take care of it. If it's a mech pilot, <span class="hl-red">Void Squadron</span> will handle them.</div>
+          <div class="bubble bubble-v">Either way, let them. If it's some 12-year-old we'll send in Wraiths to take care of it. If it's a mech pilot, Void Squadron will handle them.</div>
         </div>
       </div>
 
-      <!-- D: That's not my concern -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
@@ -496,16 +451,15 @@
         </div>
         <div class="msg-row" style="margin-top:4px">
           <div class="msg-time">09:05:53</div>
-          <div class="bubble bubble-d">We're wasting time. <span class="hl-purple">UMI</span> has to practically be better than every pilot now. When can we expect the first model?</div>
+          <div class="bubble bubble-d">We're wasting time. UMI has to practically be better than every pilot now. When can we expect the first model?</div>
         </div>
       </div>
 
-      <!-- V: We're nowhere near launch -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
           <div class="msg-time">09:06:20</div>
-          <div class="bubble bubble-v">We're nowhere near launch. Even the rest of <span class="hl-red">Void</span> still fly circles around the thing.</div>
+          <div class="bubble bubble-v">We're nowhere near launch. Even the rest of Void still fly circles around the thing.</div>
         </div>
         <div class="msg-row right" style="margin-top:4px">
           <div class="msg-time">09:06:27</div>
@@ -513,7 +467,6 @@
         </div>
       </div>
 
-      <!-- D: coked out hackers -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
@@ -522,25 +475,22 @@
         </div>
       </div>
 
-      <!-- V: Yes. But not one that can -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
           <div class="msg-time">09:07:01</div>
-          <div class="bubble bubble-v">Yes. But not one that can access <span class="hl-yellow">any system</span>, 24/7. Autonomously.</div>
+          <div class="bubble bubble-v">Yes. But not one that can access any system, 24/7. Autonomously.</div>
         </div>
       </div>
 
-      <!-- D: You don't need to resell me -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
           <div class="msg-time">09:07:19</div>
-          <div class="bubble bubble-d">You don't need to resell me on <span class="hl-purple">UMI</span>. The board and I gave you additional funding. We just want prototypes.</div>
+          <div class="bubble bubble-d">You don't need to resell me on UMI. The board and I gave you additional funding. We just want prototypes.</div>
         </div>
       </div>
 
-      <!-- V: They're coming -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
@@ -549,7 +499,6 @@
         </div>
       </div>
 
-      <!-- D: When -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
@@ -558,16 +507,14 @@
         </div>
       </div>
 
-      <!-- V: Come to Tharsis -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
           <div class="msg-time">09:08:04</div>
-          <div class="bubble bubble-v">If the board is that ferocious, tell them to come down to <span class="hl-yellow">Tharsis</span> and see it themselves.</div>
+          <div class="bubble bubble-v">If the board is that ferocious, tell them to come down to Tharsis and see it themselves.</div>
         </div>
       </div>
 
-      <!-- D: You sure -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
@@ -576,7 +523,6 @@
         </div>
       </div>
 
-      <!-- V: If it gets them off my neck / new frame -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
@@ -585,42 +531,38 @@
         </div>
         <div class="msg-row right" style="margin-top:4px">
           <div class="msg-time">09:08:44</div>
-          <div class="bubble bubble-v">Additionally, I'd like to request a new frame for <span class="hl-purple">Cornelius</span>.<br><br>The regenerative nanotech in his last one wore out. Tell the board to be on the lookout for the <span class="hl-yellow">Godeater Star Mk. II</span>.</div>
+          <div class="bubble bubble-v">Additionally, I'd like to request a new frame for Cornelius.<br><br>The regenerative nanotech in his last one wore out. Tell the board to be on the lookout for the Godeater Star Mk. II.</div>
         </div>
       </div>
 
-      <!-- D: How the hell are you gonna get a singularity cannon -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
           <div class="msg-time">09:09:11</div>
-          <div class="bubble bubble-d">I saw it. How the hell are you gonna get a <span class="hl-red">singularity cannon</span> on a mech?</div>
+          <div class="bubble bubble-d">I saw it. How the hell are you gonna get a singularity cannon on a mech?</div>
         </div>
       </div>
 
-      <!-- V: Localized -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
           <div class="msg-time">09:09:38</div>
-          <div class="bubble bubble-v">Localized. Not planet-killing by any means. <span class="hl-yellow">Fleet destroying</span> is a better ballpark estimate. Speaking of — any mothballed vessels, send them our way for tests.</div>
+          <div class="bubble bubble-v">Localized. Not planet-killing by any means. Fleet destroying is a better ballpark estimate. Speaking of — any mothballed vessels, send them our way for tests.</div>
         </div>
       </div>
 
-      <!-- D: Another member of Void -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
           <div class="msg-time">09:09:55</div>
-          <div class="bubble bubble-d">And you wanted another member of <span class="hl-red">Void</span>?</div>
+          <div class="bubble bubble-d">And you wanted another member of Void?</div>
         </div>
         <div class="msg-row" style="margin-top:4px">
           <div class="msg-time">09:10:01</div>
-          <div class="bubble bubble-d"><span class="hl-dim">// msg edited —</span> Nevermind. Just start building.</div>
+          <div class="bubble bubble-d" style="color:#A8EEE466">// msg edited — Nevermind. Just start building.</div>
         </div>
       </div>
 
-      <!-- V: Potentially -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
@@ -629,7 +571,6 @@
         </div>
       </div>
 
-      <!-- D: What do you see in the old dude -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
@@ -638,16 +579,14 @@
         </div>
       </div>
 
-      <!-- V: That's exactly why -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
           <div class="msg-time">09:10:58</div>
-          <div class="bubble bubble-v">That's exactly why you and the board need to come to <span class="hl-yellow">Tharsis</span>. Hell, give gramps a chance and you may even think we're short on funding.</div>
+          <div class="bubble bubble-v">That's exactly why you and the board need to come to Tharsis. Hell, give gramps a chance and you may even think we're short on funding.</div>
         </div>
       </div>
 
-      <!-- D: Fine -->
       <div class="msg-block">
         <div class="msg-sender">DUNAI</div>
         <div class="msg-row">
@@ -656,7 +595,6 @@
         </div>
       </div>
 
-      <!-- V: What day? Hello? -->
       <div class="msg-block">
         <div class="msg-sender" style="text-align:right;color:#CC66FF55">VENTURA</div>
         <div class="msg-row right">
@@ -665,25 +603,23 @@
         </div>
         <div class="msg-row right" style="margin-top:14px">
           <div class="msg-time">09:14:02</div>
-          <div class="bubble bubble-v" style="color:#CC66FF55">Hello?</div>
+          <div class="bubble bubble-v" style="color:#DDB8FF55">Hello?</div>
         </div>
       </div>
 
-      <!-- READ / SEEN indicator -->
       <div style="text-align:right;font-size:10px;color:#00C8AA22;letter-spacing:.08em;padding-right:4px;padding-bottom:4px">
         DELIVERED — READ 09:11:17 — NO RESPONSE
       </div>
 
-    </div><!-- end msg-area -->
+    </div>
 
     <div class="session-bar" style="border-top:1px solid #00C8AA11">
       <span>SESSION CLOSED — 09:14:02 GST — INITIATING SIDE: VENTURA [TIMEOUT]</span>
       <span style="color:#FF444444">CONNECTION TERMINATED</span>
     </div>
 
-  </div><!-- end term-body -->
+  </div>
 
-  <!-- FOOTER -->
   <div class="term-footer">
     <div class="footer-left">
       SESSION XW-7731-Ω · 14 AUG 303 UC · BIFROST SECURE RELAY<br>
@@ -694,10 +630,9 @@
     </div>
   </div>
 
-  <!-- END TRANSMISSION BLOCK -->
   <div class="end-block">
     <div class="end-line">▸ ▸ ▸ &nbsp; END TRANSMISSION &nbsp; ◂ ◂ ◂</div>
-    <div class="end-line" style="animation-delay:.5s">▸ ▸ ▸ &nbsp; END TRANSMISSION &nbsp; ◂ ◂ ◂</div>
+    <div class="end-line">▸ ▸ ▸ &nbsp; END TRANSMISSION &nbsp; ◂ ◂ ◂</div>
     <div class="end-hash">
       HASH: A9F3C214..CC14B801 · INTEGRITY: VERIFIED · ARCHIVE: XW-EXEC-303 · EYES ONLY
     </div>
