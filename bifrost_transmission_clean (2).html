@@ -3,608 +3,275 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIFROST ENCRYPTED CHANNEL // VIP-7818 × VIP-1132</title>
+<title>BIFROST ENCRYPTED CHANNEL // VIP-7818 x VIP-1132</title>
 <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
-  --void:#08090D;
-  --deep:#0C0F1A;
-  --panel:#101522;
-  --surface:#151C2E;
-  --border:#1E2A40;
-  --border-mid:#2A3A58;
-  --bifrost:#6B35CC;
-  --bifrost-dim:#3A1A6A;
-  --bifrost-pale:#9B65F0;
-  --bifrost-glow:rgba(107,53,204,0.18);
-  --amber:#D4900A;
-  --amber-dim:#6A4500;
-  --red:#B02020;
-  --red-bright:#D94040;
-  --green:#1A6A3A;
-  --green-bright:#28A85A;
-  --text:#9AAAB8;
-  --text-bright:#D8E4F0;
-  --text-dim:#465A70;
-  --text-faint:#2A3A4A;
+  --void:#08090D;--deep:#0C0F1A;--panel:#101522;--surface:#151C2E;
+  --border:#1E2A40;--border-mid:#2A3A58;
+  --bifrost:#6B35CC;--bifrost-dim:#3A1A6A;--bifrost-pale:#9B65F0;
+  --amber:#D4900A;--amber-dim:#6A4500;
+  --red:#B02020;--red-bright:#D94040;--green-bright:#28A85A;
+  --text:#9AAAB8;--text-bright:#D8E4F0;--text-dim:#465A70;--text-faint:#2A3A4A;
   --mono:'Share Tech Mono',monospace;
 }
-
 html,body{width:100%;background:var(--void);color:var(--text);font-family:'Rajdhani',sans-serif;min-height:100vh;}
-
-/* SCAN LINES */
-body::after{
-  content:'';position:fixed;top:0;left:0;right:0;bottom:0;
-  background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px);
-  pointer-events:none;z-index:9999;
-}
-
-/* OUTER FRAME */
-.terminal{
-  max-width:760px;margin:0 auto;padding:2rem 1rem;
-  position:relative;
-}
-
-/* TOP SYSTEM BAR */
-.sys-bar{
-  background:var(--deep);
-  border:1px solid var(--border-mid);
-  border-bottom:none;
-  padding:10px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:8px;
-}
-.sys-brand{
-  font-family:var(--mono);font-size:0.58rem;letter-spacing:0.25em;
-  color:var(--bifrost-pale);
-}
-.sys-meta{
-  display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;
-}
-.sys-item{
-  font-family:var(--mono);font-size:0.55rem;color:var(--text-dim);letter-spacing:0.1em;
-}
+body::after{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.06) 3px,rgba(0,0,0,0.06) 4px);pointer-events:none;z-index:9999;}
+.terminal{max-width:760px;margin:0 auto;padding:2rem 1rem;position:relative;}
+.sys-bar{background:var(--deep);border:1px solid var(--border-mid);border-bottom:none;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.sys-brand{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.25em;color:var(--bifrost-pale);}
+.sys-meta{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;}
+.sys-item{font-family:var(--mono);font-size:0.55rem;color:var(--text-dim);letter-spacing:0.1em;}
 .sys-item span{color:var(--text);}
-.classif-badge{
-  font-family:var(--mono);font-size:0.55rem;letter-spacing:0.15em;
-  color:var(--red-bright);border:1px solid var(--red);padding:2px 8px;
-}
-
-/* CHANNEL HEADER */
-.ch-header{
-  background:var(--panel);
-  border:1px solid var(--border-mid);
-  border-bottom:none;
-  padding:14px 16px;
-  position:relative;
-  overflow:hidden;
-}
-.ch-header::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,transparent,var(--bifrost),transparent);
-}
-.ch-open-label{
-  font-family:var(--mono);font-size:0.58rem;color:var(--bifrost-pale);
-  letter-spacing:0.2em;margin-bottom:6px;
-}
-.ch-title{
-  font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;
-  color:var(--text-bright);letter-spacing:0.08em;
-}
-.ch-sub{
-  font-family:var(--mono);font-size:0.58rem;color:var(--text-dim);
-  margin-top:4px;letter-spacing:0.1em;
-}
-.ch-status-row{
-  display:flex;gap:1.5rem;margin-top:10px;flex-wrap:wrap;
-}
-.status-chip{
-  display:flex;align-items:center;gap:5px;
-  font-family:var(--mono);font-size:0.55rem;letter-spacing:0.08em;color:var(--text-dim);
-}
+.classif-badge{font-family:var(--mono);font-size:0.55rem;letter-spacing:0.15em;color:var(--red-bright);border:1px solid var(--red);padding:2px 8px;}
+.ch-header{background:var(--panel);border:1px solid var(--border-mid);border-bottom:none;padding:14px 16px;position:relative;overflow:hidden;}
+.ch-header::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--bifrost),transparent);}
+.ch-open-label{font-family:var(--mono);font-size:0.58rem;color:var(--bifrost-pale);letter-spacing:0.2em;margin-bottom:6px;}
+.ch-title{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:var(--text-bright);letter-spacing:0.08em;}
+.ch-sub{font-family:var(--mono);font-size:0.58rem;color:var(--text-dim);margin-top:4px;letter-spacing:0.1em;}
+.ch-status-row{display:flex;gap:1.5rem;margin-top:10px;flex-wrap:wrap;}
+.status-chip{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:0.55rem;letter-spacing:0.08em;color:var(--text-dim);}
 .status-pip{width:6px;height:6px;border-radius:50%;}
-.pip-live{background:var(--green-bright);box-shadow:0 0 6px var(--green-bright);animation:pulse-pip 1.8s ease-in-out infinite;}
+.pip-live{background:var(--green-bright);box-shadow:0 0 6px var(--green-bright);animation:pp 1.8s ease-in-out infinite;}
 .pip-enc{background:var(--bifrost-pale);box-shadow:0 0 5px var(--bifrost-pale);}
 .pip-del{background:var(--amber);}
-
-@keyframes pulse-pip{0%,100%{opacity:1;}50%{opacity:0.4;}}
-
-/* CHAT BODY */
-.chat-body{
-  background:var(--deep);
-  border:1px solid var(--border-mid);
-  padding:1.5rem 1.25rem;
-  display:flex;flex-direction:column;gap:0;
-}
-
-/* SYSTEM MESSAGES */
-.sys-msg{
-  font-family:var(--mono);font-size:0.58rem;color:var(--text-faint);
-  letter-spacing:0.12em;text-align:center;padding:10px 0;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  margin:10px 0;
-}
-.sys-msg.first{border-top:none;margin-top:0;}
-.sys-msg.warn{color:var(--red);border-color:var(--red);animation:flicker-text 6s infinite;}
-
-@keyframes flicker-text{0%,93%,100%{opacity:1;}94%{opacity:0.6;}96%{opacity:0.9;}98%{opacity:0.7;}}
-
-/* MESSAGE BLOCK */
-.msg-block{
-  display:flex;flex-direction:column;gap:2px;
-  padding:10px 0;
-  border-bottom:1px solid rgba(30,42,64,0.5);
-}
-.msg-block:last-child{border-bottom:none;}
-
-.msg-header{
-  display:flex;align-items:center;gap:8px;margin-bottom:4px;
-}
-.sender-id{
-  font-family:var(--mono);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;
-}
-.sender-7818{color:var(--bifrost-pale);}
-.sender-1132{color:var(--amber);}
-
-.msg-ts{
-  font-family:var(--mono);font-size:0.52rem;color:var(--text-faint);letter-spacing:0.08em;
-}
-.enc-tag{
-  font-family:var(--mono);font-size:0.5rem;letter-spacing:0.08em;
-  color:var(--bifrost-dim);border:1px solid var(--bifrost-dim);padding:1px 5px;border-radius:2px;
-  margin-left:auto;
-}
-
-/* MESSAGE BUBBLES */
-.msg-bubble{
-  padding:8px 12px;font-size:0.88rem;line-height:1.7;font-weight:400;
-  color:var(--text);position:relative;
-}
-/* 7818, left aligned */
-.msg-7818{
-  background:var(--surface);border:1px solid var(--border-mid);
-  border-left:3px solid var(--bifrost-dim);
-  margin-right:3rem;border-radius:0 4px 4px 0;
-}
-/* 1132, right aligned */
-.msg-1132{
-  background:rgba(30,20,0,0.4);border:1px solid #2A2000;
-  border-right:3px solid var(--amber-dim);
-  margin-left:3rem;border-radius:4px 0 0 4px;
-  text-align:right;
-}
-
-.msg-bubble strong{color:var(--text-bright);font-weight:500;}
-.msg-bubble em{color:var(--text-dim);font-style:italic;}
-
-/* SHORT / TERSE MESSAGES */
-.msg-terse{
-  font-size:0.82rem;letter-spacing:0.02em;
-}
-
-/* FILE UPLOAD */
-.file-upload{
-  background:rgba(107,53,204,0.08);border:1px solid var(--bifrost-dim);
-  padding:10px 14px;margin-top:4px;
-  display:flex;align-items:center;gap:10px;
-  border-radius:3px;
-}
-.file-icon{
-  font-size:1.2rem;color:var(--bifrost-pale);flex-shrink:0;
-}
-.file-info{}
-.file-name{
-  font-family:var(--mono);font-size:0.62rem;color:var(--bifrost-pale);
-  letter-spacing:0.1em;
-}
-.file-meta{
-  font-family:var(--mono);font-size:0.52rem;color:var(--bifrost-dim);
-  margin-top:2px;
-}
-
-/* AUTO-DELETE WARNING */
-.auto-del-banner{
-  background:rgba(176,32,32,0.08);border:1px solid var(--red);
-  padding:8px 14px;margin:14px 0;
-  display:flex;align-items:center;gap:8px;
-}
-.del-icon{color:var(--red-bright);font-size:0.8rem;}
-.del-text{font-family:var(--mono);font-size:0.58rem;color:var(--red-bright);letter-spacing:0.15em;}
-.del-blink{animation:blink-del 1.2s step-end infinite;}
-@keyframes blink-del{0%,100%{opacity:1;}50%{opacity:0;}}
-
-/* BOTTOM BAR */
-.bot-bar{
-  background:var(--panel);border:1px solid var(--border-mid);border-top:none;
-  padding:8px 16px;display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:6px;
-}
-.bot-item{font-family:var(--mono);font-size:0.52rem;color:var(--text-faint);letter-spacing:0.08em;}
-.bot-item span{color:var(--text-dim);}
-
-/* CORNER DECO */
+@keyframes pp{0%,100%{opacity:1;}50%{opacity:0.4;}}
+.chat-body{background:var(--deep);border:1px solid var(--border-mid);padding:1.5rem 1.25rem;display:flex;flex-direction:column;gap:0;position:relative;}
 .corner{position:absolute;width:12px;height:12px;}
 .tl{top:0;left:0;border-top:1px solid var(--bifrost);border-left:1px solid var(--bifrost);}
 .tr{top:0;right:0;border-top:1px solid var(--bifrost);border-right:1px solid var(--bifrost);}
 .bl{bottom:0;left:0;border-bottom:1px solid var(--bifrost);border-left:1px solid var(--bifrost);}
 .br{bottom:0;right:0;border-bottom:1px solid var(--bifrost);border-right:1px solid var(--bifrost);}
+.sys-msg{font-family:var(--mono);font-size:0.58rem;color:var(--text-faint);letter-spacing:0.12em;text-align:center;padding:10px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin:10px 0;}
+.sys-msg.first{border-top:none;margin-top:0;}
+.sys-msg.warn{color:var(--red);border-color:var(--red);}
+.msg-block{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid rgba(30,42,64,0.5);}
+.msg-block:last-child{border-bottom:none;}
+.msg-header{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
+.sender-id{font-family:var(--mono);font-size:0.6rem;font-weight:700;letter-spacing:0.1em;}
+.s78{color:var(--bifrost-pale);}
+.s11{color:var(--amber);}
+.msg-ts{font-family:var(--mono);font-size:0.52rem;color:var(--text-faint);letter-spacing:0.08em;}
+.enc-tag{font-family:var(--mono);font-size:0.5rem;letter-spacing:0.08em;color:var(--bifrost-dim);border:1px solid var(--bifrost-dim);padding:1px 5px;border-radius:2px;margin-left:auto;}
+.msg-bubble{padding:8px 12px;font-size:0.88rem;line-height:1.75;font-weight:400;color:var(--text);white-space:pre-wrap;}
+.m78{background:var(--surface);border:1px solid var(--border-mid);border-left:3px solid var(--bifrost-dim);margin-right:3rem;border-radius:0 4px 4px 0;}
+.m11{background:rgba(30,20,0,0.4);border:1px solid #2A2000;border-right:3px solid var(--amber-dim);margin-left:3rem;border-radius:4px 0 0 4px;text-align:right;}
+.file-upload{background:rgba(107,53,204,0.08);border:1px solid var(--bifrost-dim);padding:10px 14px;margin-top:4px;display:flex;align-items:center;gap:10px;border-radius:3px;}
+.file-icon{font-size:1.2rem;color:var(--bifrost-pale);flex-shrink:0;}
+.file-name{font-family:var(--mono);font-size:0.62rem;color:var(--bifrost-pale);letter-spacing:0.1em;}
+.file-meta{font-family:var(--mono);font-size:0.52rem;color:var(--bifrost-dim);margin-top:2px;}
+.auto-del-banner{background:rgba(176,32,32,0.08);border:1px solid var(--red);padding:8px 14px;margin:14px 0;display:flex;align-items:center;gap:8px;}
+.del-icon{color:var(--red-bright);font-size:0.8rem;}
+.del-text{font-family:var(--mono);font-size:0.58rem;color:var(--red-bright);letter-spacing:0.15em;}
+.del-blink{animation:bd 1.2s step-end infinite;}
+@keyframes bd{0%,100%{opacity:1;}50%{opacity:0;}}
+.bot-bar{background:var(--panel);border:1px solid var(--border-mid);border-top:none;padding:8px 16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+.bot-item{font-family:var(--mono);font-size:0.52rem;color:var(--text-faint);letter-spacing:0.08em;}
+.bot-item span{color:var(--text-dim);}
 </style>
 </head>
 <body>
-
 <div class="terminal">
 
-  <!-- TOP BAR -->
-  <div class="sys-bar">
-    <div class="sys-brand">BIFROST TECHNOLOGIES // SECURE RELAY // XENON-LAYER ENCRYPTION</div>
-    <div class="sys-meta">
-      <div class="sys-item">NODE: <span>HCB-RELAY-9</span></div>
-      <div class="sys-item">PROTOCOL: <span>XENON-7</span></div>
-      <div class="sys-item" id="ts-top"></div>
-      <div class="classif-badge">ABSOLUTE // NO RECORD</div>
-    </div>
+<div class="sys-bar">
+  <div class="sys-brand">BIFROST TECHNOLOGIES // SECURE RELAY // XENON-LAYER ENCRYPTION</div>
+  <div class="sys-meta">
+    <div class="sys-item">NODE: <span>HCB-RELAY-9</span></div>
+    <div class="sys-item">PROTOCOL: <span>XENON-7</span></div>
+    <div class="sys-item" id="ts-top"></div>
+    <div class="classif-badge">ABSOLUTE // NO RECORD</div>
   </div>
-
-  <!-- CHANNEL HEADER -->
-  <div class="ch-header">
-    <div class="ch-open-label">▸ ENCRYPTED CHANNEL OPENED</div>
-    <div class="ch-title">VIP-7818 &nbsp;×&nbsp; VIP-1132</div>
-    <div class="ch-sub">POINT-TO-POINT // ROUTED VIA THARSIS RELAY // BURST-DELETED ON CLOSE</div>
-    <div class="ch-status-row">
-      <div class="status-chip"><div class="status-pip pip-live"></div>CHANNEL LIVE</div>
-      <div class="status-chip"><div class="status-pip pip-enc"></div>XENON-7 ACTIVE</div>
-      <div class="status-chip"><div class="status-pip pip-del"></div>AUTO-DELETE: DEFERRED</div>
-    </div>
-  </div>
-
-  <!-- CHAT BODY -->
-  <div class="chat-body" style="position:relative;">
-    <div class="corner tl"></div>
-    <div class="corner tr"></div>
-    <div class="corner bl"></div>
-    <div class="corner br"></div>
-
-    <div class="sys-msg first">◈ CHANNEL ESTABLISHED // PARTICIPANTS VERIFIED // BEGIN TRANSMISSION ◈</div>
-
-    <!-- 7818 OPENS -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts1"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818">How would you feel about increasing Void Squadron once more?</div>
-    </div>
-
-    <!-- 1132 RESPONDS -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts2" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132 msg-terse">No.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts3"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818 msg-terse">Did you even think about it?</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts4" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">No need. Not enough aces.<br><br>UMI is nearing the first full-scale demonstration. Lyra was plenty enough, and already too much.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts5"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818">The board identified three individuals as potential candidates. Dion Hathaway, Avril Cosette, and Satoshi Hosaka. Reviews of additional candidates are ongoing.</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts6" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">Absolutely not.<br><br>Satoshi isn't anywhere near Void Squadron's threshold. Avril is too loyal to the Shogunate. And Dion is a loose cannon, effectively a quadruple agent.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts7"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818">Dion is the only pilot alive who could rival Cornelius. And everything you just said about him, except the loyalty, could have been said about Lyra.</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts8" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">Lyra did rival Cornelius. She lost a leg for it.<br><br>She had nothing. Nothing but a desire to fly again. Same as the old man.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts9"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818 msg-terse">Fine. Consider the proposition denied.<br><br>This does mean you'll have to deal with Hosaka. He knows about UMI. And he's been digging into Cornelius.</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts10" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">Barely a problem. Send in a WRAITH team. If you're going to be annoying about it, we'll have Void 3 and Void 5 run support.<br><br>Besides, people are going to know Bifrost has a new superweapon in development. What a surprise.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts11"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818">A quarter of your funding goes to program security. We are not about to go careless with leaks or rumors now.<br><br>Tell 3 and 5 to get ready.<br><br>In other news, how long until the first fully functional unit?</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts12" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">At this rate, 1.5 to 2 years.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts13"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818">You want me to explain to the board it'll take another two years? The entire reason they want expansion is so Void can be deployed more broadly for a better return.<br><br>Will the old man's heart even last that long?</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts14" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">He's 79. My father lasted until 102 with half the healthcare. We have the greatest doctors in the galaxy here, and we're spending more on his fitness than you do on yours. Even if the radiation gets through to him, we'll pull whatever cutting-edge measures we need to get him back to full condition.<br><br>Furthermore, Project NEXT took over ten years.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts15"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818 msg-terse">To build a weapon to end all weapons.</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts16" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">And yet the war rages on.<br><br>UMI is not a weapon. It is a concept beyond the idea of a weapon, which is why it was initially designated the Equal Humanity Weapon. Give it time.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts17"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818">Remains to be seen.<br><br>On another note, you mentioned at the Correspondents Dinner you wanted a new frame for Cornelius.</div>
-    </div>
-
-    <!-- AUTO-DELETE BANNER -->
-    <div class="auto-del-banner">
-      <span class="del-icon">⚠</span>
-      <span class="del-text">AUTO-DELETE PROTOCOL ENGAGED // TRANSMISSION WILL NOT BE ARCHIVED // <span class="del-blink">PROCEED</span></span>
-    </div>
-
-    <!-- 1132 FILE UPLOAD -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts18" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132" style="margin-left:3rem;text-align:right;">
-        Take a look. If it allows Cornelius to fly to his full modeled potential, the best-case timeline accelerates UMI to approximately 10 months, 8 with no interference.
-      </div>
-      <div class="file-upload" style="flex-direction:row-reverse;margin-left:3rem;">
-        <div class="file-icon">⬡</div>
-        <div class="file-info" style="text-align:right;">
-          <div class="file-name">GODEATER_STAR_MK-II.xbf</div>
-          <div class="file-meta">ENCRYPTED // 847.4 MB // XENON-SEALED // EYES ONLY</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts19"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818">How in the actual fuck are you putting a Singularity Cannon on a mech?<br><br>The forces alone would twist the frame in half.</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts20" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">The Redeemer Incident proved a smaller, localized singularity is achievable. Not planet-killing, think fleet destroyer.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts21"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818 msg-terse">Won't that potentially kill Cornelius?</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts22" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">It was his idea.<br><br>Sparing you the engineering details, it's a linear singularity rather than a spherical one. Think of it as a decapitation rather than a detonation. Probability of malfunction is near zero.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts23"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818">You want to bet the fate of the greatest pilot who has ever lived on a near-zero probability? Are you absolutely certain?</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts24" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132 msg-terse">He said he'll enjoy the thrill.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts25"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818 msg-terse">If he dies, what then?</div>
-    </div>
-
-    <!-- 1132 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="msg-ts" id="ts26" style="margin-left:auto"></span>
-        <span class="enc-tag">ENC</span>
-        <span class="sender-id sender-1132">VIP-1132</span>
-      </div>
-      <div class="msg-bubble msg-1132">He won't.<br><br>If you or the board doubt us, come see us on Tharsis.</div>
-    </div>
-
-    <!-- 7818 -->
-    <div class="msg-block">
-      <div class="msg-header">
-        <span class="sender-id sender-7818">VIP-7818</span>
-        <span class="msg-ts" id="ts27"></span>
-        <span class="enc-tag">ENC</span>
-      </div>
-      <div class="msg-bubble msg-7818">Yes, we are well aware. Coordinating a board expedition to Tharsis is not like asking everyone out for drinks.<br><br>We'll let you know.</div>
-    </div>
-
-    <div class="sys-msg">◈ CHANNEL CLOSED BY VIP-7818 // BURST-DELETE INITIATED // NO RECORD RETAINED ◈</div>
-
-  </div>
-
-  <!-- BOTTOM BAR -->
-  <div class="bot-bar">
-    <div class="bot-item">RELAY: <span>THARSIS-NODE-9 // XENON-7</span></div>
-    <div class="bot-item">PARTICIPANTS: <span>2 // VERIFIED</span></div>
-    <div class="bot-item">RETENTION: <span style="color:var(--red);">NONE // AUTO-DELETED</span></div>
-    <div class="bot-item" id="ts-bot"></div>
-  </div>
-
 </div>
 
+<div class="ch-header">
+  <div class="ch-open-label">&#9656; ENCRYPTED CHANNEL OPENED</div>
+  <div class="ch-title">VIP-7818 &nbsp;&times;&nbsp; VIP-1132</div>
+  <div class="ch-sub">POINT-TO-POINT // ROUTED VIA THARSIS RELAY // BURST-DELETED ON CLOSE</div>
+  <div class="ch-status-row">
+    <div class="status-chip"><div class="status-pip pip-live"></div>CHANNEL LIVE</div>
+    <div class="status-chip"><div class="status-pip pip-enc"></div>XENON-7 ACTIVE</div>
+    <div class="status-chip"><div class="status-pip pip-del"></div>AUTO-DELETE: DEFERRED</div>
+  </div>
+</div>
+
+<div class="chat-body">
+  <div class="corner tl"></div><div class="corner tr"></div>
+  <div class="corner bl"></div><div class="corner br"></div>
+
+  <div class="sys-msg first">&#9672; CHANNEL ESTABLISHED // PARTICIPANTS VERIFIED // BEGIN TRANSMISSION &#9672;</div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts1"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">How would you feel about increasing Void Squadron once more?</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts2" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">No.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts3"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">Did you even think about it?</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts4" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">No need. Not enough aces. UMI is nearing the first full scale demonstration. Lyra was plenty enough and already too much.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts5"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">The board identified three individuals as potential candidates. Dion Hathaway, Avril Cosette, and Satoshi Hosaka. We're currently conducting reviews of more candidates.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts6" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">Absolutely not. Satoshi isn't anywhere near the level of Void Squadron. Avril is too loyal to the Shogunate, and Dion is a loose cannon that is effectively a quadruple agent.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts7"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">Dion is the only pilot alive that could rival Cornelius. And everything but the loyalty could've been said about Lyra.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts8" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">Lyra did rival Cornelius and she lost a leg for it. She had nothing. Nothing but a desire to fly again. Same as the old man.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts9"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">Fine then, consider the proposition denied.
+
+This does mean that you'll have to deal with Hosaka. He knows about UMI and has been digging into Cornelius.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts10" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">Barely a problem. Send in a WRAITH team. If you're gonna be annoying, we'll have Void 3 and 5 run support.
+
+Besides, people are gonna know BiFrost has a new super weapon in development. What a surprise.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts11"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">A quarter of your funding is going to the overall security of the program. We're not about to get willy nilly now with leaks or rumors. Tell 3 and 5 to get ready.
+
+In other news, how long until the first full function unit?</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts12" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">At this rate, 1.5-2 years.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts13"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">You want me to explain to the board it'll take up to another two years? The whole reason they want expansion is so that Void can be deployed more for a better ROI. Will the old man's heart even last that long?</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts14" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">He's 79. My dad lasted until 102 with half of the healthcare. We've the greatest doctors in the galaxy here and spending even more on his fitness than you do on yours. Even if the radiation gets through to him, we'll pull whatever cutting-edge bullshit we need to get him back to tip-top shape.
+
+Furthermore, Project NEXT took over 10.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts15"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">To build a weapon to end all weapons.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts16" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">And yet the war rages on. UMI is a weapon beyond the concept of a weapon. Hence why it was initially dubbed the equal humanity weapon. Give it time.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts17"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">Remains to be seen. Even further, you told me at the correspondents dinner you wanted a new mech for Cornelius?</div>
+  </div>
+
+  <div class="auto-del-banner">
+    <span class="del-icon">&#9888;</span>
+    <span class="del-text">AUTO-DELETE IS NOW ON // TRANSMISSION WILL NOT BE ARCHIVED // <span class="del-blink">PROCEED</span></span>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts18" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11" style="margin-left:3rem;">Take a look. If it allows Cornelius to fly to his full potential like we've modeled, the best time tables speed UMI to about 10 months, 8 with no interference.</div>
+    <div class="file-upload" style="flex-direction:row-reverse;margin-left:3rem;">
+      <div class="file-icon">&#11041;</div>
+      <div style="text-align:right;">
+        <div class="file-name">GODEATER_STAR_MK-II.xbf</div>
+        <div class="file-meta">ENCRYPTED // 847.4 MB // XENON-SEALED // EYES ONLY</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts19"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">How in the actual fuck are you going to put a Singularity Cannon on a mech? Won't the forces alone twist the frame in half?</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts20" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">The Redeemer incident proved that its possible to have a smaller, localized singularity. Not planet killing by any means. Think fleet destroyer.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts21"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">Again, won't that potentially kill Cornelius?</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts22" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">It was his idea. Besides, sparing you the boring details, it's a linear singularity instead of a spherical one. Think of it as a decapitation instead of a explosion. The chances of malfunction are near zero.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts23"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">You want to bet the fate of the greatest pilot to ever exist on a near zero chance? Are you absolutely certain?</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts24" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">He said he'll enjoy the thrill.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts25"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">If he dies, what then?</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="msg-ts" id="ts26" style="margin-left:auto"></span><span class="enc-tag">ENC</span><span class="sender-id s11">VIP-1132</span></div>
+    <div class="msg-bubble m11">He won't.  If you or the board doubt us, come see us on Tharsis.</div>
+  </div>
+
+  <div class="msg-block">
+    <div class="msg-header"><span class="sender-id s78">VIP-7818</span><span class="msg-ts" id="ts27"></span><span class="enc-tag">ENC</span></div>
+    <div class="msg-bubble m78">Yes, we are well aware. Coordinating a board expedition to Tharsis isn't like asking everyone out for drinks. We'll let you know when we do.</div>
+  </div>
+
+  <div class="sys-msg">&#9672; CHANNEL CLOSED BY VIP-7818 // BURST-DELETE INITIATED // NO RECORD RETAINED &#9672;</div>
+</div>
+
+<div class="bot-bar">
+  <div class="bot-item">RELAY: <span>THARSIS-NODE-9 // XENON-7</span></div>
+  <div class="bot-item">PARTICIPANTS: <span>2 // VERIFIED</span></div>
+  <div class="bot-item">RETENTION: <span style="color:var(--red);">NONE // AUTO-DELETED</span></div>
+  <div class="bot-item" id="ts-bot"></div>
+</div>
+
+</div>
 <script>
-function fmtTime(offset) {
-  const now = new Date(Date.now() + offset);
-  const h = String(now.getHours()).padStart(2,'0');
-  const m = String(now.getMinutes()).padStart(2,'0');
-  const s = String(now.getSeconds()).padStart(2,'0');
-  return `${h}:${m}:${s} GST`;
-}
-
-// Set all timestamps with small offsets to simulate real conversation pacing
-const offsets = [0,22000,38000,52000,70000,95000,118000,135000,160000,175000,198000,214000,232000,255000,278000,295000,312000,340000,358000,375000,390000,405000,422000,438000,451000,468000,490000];
-
-function setTimestamps() {
-  const base = Date.now() - 540000; // ~9 minutes ago for first message
-  offsets.forEach((off, i) => {
-    const el = document.getElementById('ts' + (i+1));
-    if (el) {
-      const d = new Date(base + off);
-      const h = String(d.getHours()).padStart(2,'0');
-      const m = String(d.getMinutes()).padStart(2,'0');
-      const s = String(d.getSeconds()).padStart(2,'0');
-      el.textContent = `${h}:${m}:${s}`;
-    }
-  });
-}
-
-function updateLive() {
-  const now = new Date();
-  const str = `UC 303 // ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}:${String(now.getSeconds()).padStart(2,'0')} GST`;
-  const t = document.getElementById('ts-top');
-  const b = document.getElementById('ts-bot');
-  if(t) t.textContent = str;
-  if(b) b.textContent = str;
-}
-
-setTimestamps();
-updateLive();
-setInterval(updateLive, 1000);
+const off=[0,22000,38000,52000,70000,95000,118000,135000,160000,175000,198000,214000,232000,255000,278000,295000,312000,340000,358000,375000,390000,405000,422000,438000,451000,468000,490000];
+function setTs(){const b=Date.now()-540000;off.forEach((o,i)=>{const el=document.getElementById('ts'+(i+1));if(el){const d=new Date(b+o);el.textContent=`${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:${String(d.getSeconds()).padStart(2,'0')}`;}})}
+function live(){const n=new Date();const s=`UC 303 // ${String(n.getHours()).padStart(2,'0')}:${String(n.getMinutes()).padStart(2,'0')}:${String(n.getSeconds()).padStart(2,'0')} GST`;document.getElementById('ts-top').textContent=s;document.getElementById('ts-bot').textContent=s;}
+setTs();live();setInterval(live,1000);
 </script>
-
 </body>
 </html>
